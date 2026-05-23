@@ -2,10 +2,13 @@ workflows:
   android-assemble:
     name: Teclo Build
     scripts:
+      - name: Setup Gradle
+        script: |
+          cd $CM_BUILD_DIR
+          gradle wrapper --gradle-version 8.2
       - name: Build APK
         script: |
           cd $CM_BUILD_DIR
-          gradle wrapper
           ./gradlew assembleDebug
     artifacts:
       - app/build/outputs/**/*.apk
