@@ -5,6 +5,7 @@ workflows:
       - name: Build APK
         script: |
           cd $CM_BUILD_DIR
+          gradle wrapper
           ./gradlew assembleDebug
     artifacts:
       - app/build/outputs/**/*.apk
