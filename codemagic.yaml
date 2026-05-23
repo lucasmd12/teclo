@@ -1,11 +1,7 @@
+cat > ~/teclo/codemagic.yaml << 'EOF'
 workflows:
   android-assemble:
     name: Teclo Build
-    environment:
-      android_signing:
-        - teclo
-      vars:
-        PACKAGE_NAME: "com.teclo.keyboard"
     scripts:
       - name: Build APK
         script: |
@@ -13,3 +9,4 @@ workflows:
           ./gradlew assembleDebug
     artifacts:
       - app/build/outputs/**/*.apk
+EOF
