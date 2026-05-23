@@ -11,11 +11,11 @@ class TecloIME : InputMethodService() {
 
     override fun onCreateInputView(): View {
         keyboardView = TecloKeyboardView(this)
+        keyboardView.layoutParams = android.widget.FrameLayout.LayoutParams(
+            android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+            280.dpToPx(this)
+        )
         return keyboardView
-    }
-
-    override fun onStartInputView(info: EditorInfo?, restarting: Boolean) {
-        super.onStartInputView(info, restarting)
     }
 
     fun commitText(text: String) {
@@ -25,4 +25,7 @@ class TecloIME : InputMethodService() {
     fun deleteChar() {
         currentInputConnection?.deleteSurroundingText(1, 0)
     }
+
+    private fun Int.dpToPx(context: android.content.Context): Int =
+        (this * context.resources.displayMetrics.density).toInt()
 }
